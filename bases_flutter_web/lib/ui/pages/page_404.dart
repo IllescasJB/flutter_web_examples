@@ -1,0 +1,30 @@
+import 'package:bases_flutter_web/ui/share/custom_flat_button.dart';
+import 'package:flutter/material.dart';
+
+class Page404 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '404',
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Page not found',
+              style: TextStyle(fontSize: 20),
+            ),
+            CustomFlatButton(
+              text: 'Go Back',
+              onPressed: () => Navigator.pushNamed(context, '/stateful'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
