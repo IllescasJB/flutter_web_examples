@@ -24,8 +24,6 @@ class _TabletDesktopMenu extends StatelessWidget {
         children: [
           CustomFlatButton(
             text: 'Stateful Counter',
-            //onPressed: () => Navigator.pushNamed(context, '/stateful'),
-            //onPressed: () => navigationService.navigateTo('/stateful'),
             onPressed: () =>
                 locator<NavigationService>().navigateTo('/stateful'),
             color: Colors.black,
@@ -33,8 +31,6 @@ class _TabletDesktopMenu extends StatelessWidget {
           SizedBox(width: 10),
           CustomFlatButton(
             text: 'Provider Counter',
-            //onPressed: () => Navigator.pushNamed(context, '/provider'),
-            //onPressed: () => navigationService.navigateTo('/provider'),
             onPressed: () =>
                 locator<NavigationService>().navigateTo('/provider'),
             color: Colors.black,
@@ -42,9 +38,21 @@ class _TabletDesktopMenu extends StatelessWidget {
           SizedBox(width: 10),
           CustomFlatButton(
             text: 'Other Page',
-            //onPressed: () => Navigator.pushNamed(context, '/aaa'),
-            //onPressed: () => navigationService.navigateTo('/aaa'),
             onPressed: () => locator<NavigationService>().navigateTo('/aaa'),
+            color: Colors.black,
+          ),
+          SizedBox(width: 10),
+          CustomFlatButton(
+            text: 'Stateful Counter 100',
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/stateful/100'),
+            color: Colors.black,
+          ),
+          SizedBox(width: 10),
+          CustomFlatButton(
+            text: 'Provider 200',
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/provider?q=200'),
             color: Colors.black,
           ),
         ],
