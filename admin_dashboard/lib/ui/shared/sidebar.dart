@@ -1,13 +1,23 @@
+import 'package:admin_dashboard/providers/sidemenu_provider.dart';
+import 'package:admin_dashboard/router/router.dart';
+import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:admin_dashboard/ui/shared/widgets/logo.dart';
 import 'package:admin_dashboard/ui/shared/widgets/menu_item.dart';
 import 'package:admin_dashboard/ui/shared/widgets/text_separator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({Key? key}) : super(key: key);
 
+  void navigateTo(String routeName) {
+    NavigationService.navigateTo(routeName);
+    SideMenuProvider.closeMenu();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final sideMenuProvider = Provider.of<SideMenuProvider>(context);
     return Container(
       width: 200,
       height: double.infinity,
@@ -23,8 +33,9 @@ class SideBar extends StatelessWidget {
           MenuItem(
             text: 'Dashboard',
             icon: Icons.compass_calibration_outlined,
-            isActive: false,
-            onPressed: () => print('Dashboard'),
+            onPressed: () => navigateTo(Flurorouter.dashboardRoute),
+            isActive:
+                sideMenuProvider.currentPage == Flurorouter.dashboardRoute,
           ),
           MenuItem(
             text: 'Orders',
@@ -63,7 +74,8 @@ class SideBar extends StatelessWidget {
           MenuItem(
             text: 'Icons',
             icon: Icons.list_alt_outlined,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.iconsRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.iconsRoute,
           ),
           MenuItem(
             text: 'Marketing',
@@ -76,10 +88,15 @@ class SideBar extends StatelessWidget {
             onPressed: () {},
           ),
           MenuItem(
-            text: 'Black',
+            text: 'Blank',
             icon: Icons.post_add_outlined,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.blankRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.blankRoute,
           ),
+          SizedBox(
+            height: 50,
+          ),
+          TextSeparator(text: 'Exit'),
           MenuItem(
             text: 'Logout',
             icon: Icons.exit_to_app_outlined,

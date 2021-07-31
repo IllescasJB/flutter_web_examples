@@ -2,7 +2,7 @@ import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
 
-class DashboardView extends StatelessWidget {
+class BlankView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,13 +10,13 @@ class DashboardView extends StatelessWidget {
         physics: ClampingScrollPhysics(),
         children: [
           Text(
-            'DasboardView',
+            'BlankView',
             style: CustomLabels.h1,
           ),
           SizedBox(height: 10),
           WhiteCard(
-            title: 'Sales Statistics',
-            child: Text('Hola Mundo'),
+            title: 'Blank page',
+            child: Text('Hello World Page!!!'),
           ),
         ],
       ),
