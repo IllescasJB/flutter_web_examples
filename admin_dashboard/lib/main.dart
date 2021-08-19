@@ -1,16 +1,24 @@
-import 'package:admin_dashboard/providers/auth_provider.dart';
-import 'package:admin_dashboard/providers/sidemenu_provider.dart';
-import 'package:admin_dashboard/router/router.dart';
-import 'package:admin_dashboard/services/local_storage.dart';
-import 'package:admin_dashboard/services/navigation_service.dart';
-import 'package:admin_dashboard/ui/layouts/auth/auth_layout.dart';
-import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
-import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:admin_dashboard/api/CafeApi.dart';
+
+import 'package:admin_dashboard/ui/layouts/auth/auth_layout.dart';
+import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
+import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
+
+import 'package:admin_dashboard/router/router.dart';
+
+import 'package:admin_dashboard/providers/auth_provider.dart';
+import 'package:admin_dashboard/providers/sidemenu_provider.dart';
+
+import 'package:admin_dashboard/services/local_storage.dart';
+import 'package:admin_dashboard/services/navigation_service.dart';
+import 'package:admin_dashboard/services/notifications_services.dart';
+
 void main() async {
   await LocalStorage.configurePreference();
+  CafeApi.configureDio();
   Flurorouter.configureRoutes();
   runApp(AppState());
 }
@@ -43,6 +51,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigationKey,
+      scaffoldMessengerKey: NotificationsServices.messengerKey,
       builder: (_, child) {
         final authProvider = Provider.of<AuthProvider>(context);
         if (authProvider.authStatus == AuthStatus.cheking)
@@ -52,7 +61,6 @@ class MyApp extends StatelessWidget {
         } else {
           return AuthLayout(child: child!);
         }
-        //print(LocalStorage.preferences.getString('token'));
       },
       theme: ThemeData.light().copyWith(
         scrollbarTheme: ScrollbarThemeData().copyWith(
