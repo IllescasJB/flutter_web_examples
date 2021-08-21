@@ -12,7 +12,7 @@ class SideBar extends StatelessWidget {
   const SideBar({Key? key}) : super(key: key);
 
   void navigateTo(String routeName) {
-    NavigationService.navigateTo(routeName);
+    NavigationService.replaceTo(routeName);
     SideMenuProvider.closeMenu();
   }
 
@@ -51,7 +51,9 @@ class SideBar extends StatelessWidget {
           MenuItem(
             text: 'Categories',
             icon: Icons.layers_outlined,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.categoriesRoute),
+            isActive:
+                sideMenuProvider.currentPage == Flurorouter.categoriesRoute,
           ),
           MenuItem(
             text: 'Products',
